@@ -292,14 +292,8 @@ end
 
 % Iterate over mission segments
 for i = 1 : length(mission.segments)
-    disp("Altitude = " + mission.segments{i}.altitude);
-    [mission.segments{i}.temperature, mission.segments{i}.speed_sound, mission.segments{i}.pressure, mission.segments{i}.density] = atmosisa(mission.segments{i}.altitude);
-    
-    disp("T = " + mission.segments{i}.temperature);
-    disp("Sound Speed = " + mission.segments{i}.speed_sound);
-    disp("Pressure = " + mission.segments{i}.pressure);
-    disp("Density = " + mission.segments{i}.density);
-    
+    [mission.segments{i}.temperature, mission.segments{i}.speed_sound, mission.segments{i}.pressure, mission.segments{i}.density] = atmosphere_relations(mission.segments{i}.altitude);
+
     if strcmp(mission.segments{i}.type, 'taxi') % Taxi segment
         vehicle = taxi(mission.segments{i}, vehicle, energy);
     elseif strcmp(mission.segments{i}.type, 'hover') % Hover segment

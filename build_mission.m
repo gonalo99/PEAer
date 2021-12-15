@@ -11,7 +11,7 @@ mission.range = 0;
 
 % Iterate over mission segments
 for i = 1 : length(mission.segments)
-    [mission.segments{i}.temperature, mission.segments{i}.speed_sound, mission.segments{i}.pressure, mission.segments{i}.density] = atmosisa(mission.segments{i}.altitude);
+    [mission.segments{i}.temperature, mission.segments{i}.speed_sound, mission.segments{i}.pressure, mission.segments{i}.density] = atmosphere_relations(mission.segments{i}.altitude);
 
     if ~isfield(mission.segments{i}, 'velocity')
         mission.segments{i}.velocity = 0;
