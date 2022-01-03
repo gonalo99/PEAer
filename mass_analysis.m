@@ -29,7 +29,9 @@ for i = 1 : length(vehicle.components)
         m = m * vehicle.components{i}.number;
     end
     
-    mass = mass + m;
+    if (vehicle.components{i}.name ~= "Electric Motor @ cruise")
+        mass = mass + m;
+    end
 end
 
 function mf_fuel = breguet(range, velocity, sfc, ld)

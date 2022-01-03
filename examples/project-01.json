@@ -212,7 +212,7 @@
                 "sweep_le": 0.0,
                 "sweep_c4": 0.0,
                 "sweep_tc_max": 0.0,
-                "mass": 25
+                "mass": 30
             },
             {
                 "name": "Battery",
