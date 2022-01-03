@@ -93,15 +93,15 @@
                 "name": "A",
                 "type": "vertical_climb",
                 "energy_network": "Electric Energy Network @ vertical",
-                "velocity": 8.0,
-                "altitude": [0.0, 100.0]
+                "velocity": 6.0,
+                "altitude": [0.0, 125.0]
             },
             {
                 "name": "B",
                 "type": "climb",
                 "energy_network": "Electric Energy Network @ vertical",
                 "velocity": 30.0,
-                "altitude": [100.0, 1250.0],
+                "altitude": [125.0, 1250.0],
                 "angle": 10
             },
             {
@@ -117,7 +117,7 @@
                 "type": "descent",
                 "energy_network": "Hybrid Energy Network",
                 "velocity": -30.0,
-                "altitude": [1250.0, 100.0],
+                "altitude": [1250.0, 125.0],
                 "angle": -10.0
             },
             {
@@ -125,7 +125,7 @@
                 "type": "vertical_descent",
                 "energy_network": "Electric Energy Network @ vertical",
                 "velocity": -6.0,
-                "altitude": [100.0, 0.0]
+                "altitude": [125.0, 0.0]
             }
         ]
     },
@@ -161,6 +161,8 @@
                 "aspect_ratio": 11,
                 "mean_chord": 1.0,
                 "oswald_efficiency": 0.85,
+                "x_w" : 1,
+                "z_w": -0.2,
                 "airfoil": {
                     "type": "naca6412",
                     "tc_max": 0.12,
@@ -180,6 +182,7 @@
                 "aspect_ratio": 10,
                 "mean_chord": 0.5,
                 "oswald_efficiency": 0.85,
+                "l_ht" : 3,
                 "airfoil": {
                     "type": "naca6412",
                     "tc_max": 0.12,
@@ -196,8 +199,8 @@
                 "name": "Vertical Tail",
                 "type": "wing.vtail",
                 "interf_factor": 1.0,
-                "aspect_ratio": 5.0,
-                "mean_chord": 1.0,
+                "aspect_ratio": 4.0,
+                "mean_chord": 0.8,
                 "oswald_efficiency": 0.85,
                 "airfoil": {
                     "type": "naca0012",
@@ -206,17 +209,10 @@
                     "lift_slope_coefficient": 6.2,
                     "cl_max": 10.0
                 },
-                "sweep_le": 10.0,
-                "sweep_c4": 15.0,
-                "sweep_tc_max": 20.0,
-                "mass": 0
-            },
-            {
-                "name": "Turboshaft",
-                "type": "engine.prop",
-                "efficiency": 0.8,
-                "mass": 160,
-                "max_power": 400000
+                "sweep_le": 0.0,
+                "sweep_c4": 0.0,
+                "sweep_tc_max": 0.0,
+                "mass": 25
             },
             {
                 "name": "Battery",
@@ -225,12 +221,6 @@
                 "efficiency": 0.9,
                 "reserve": 0.2,
                 "mass": 300
-            },
-            {
-                "name": "Fuel Tank",
-                "type": "energy.fuel",
-                "reserve": 0.06,
-                "mass": 100
             },
             {
                 "name": "Rotor",
@@ -256,12 +246,6 @@
                 "base_drag_coefficient": 0.02,
                 "tip_velocity": 240.1,
                 "efficiency": 0.6,
-                "mass": 20
-            },
-            {
-                "name": "Gearbox",
-                "type": "gearbox",
-                "efficiency": 0.95,
                 "mass": 20
             },
             {
@@ -315,33 +299,6 @@
                     },
                     {
                         "name": "Propeller"
-                    }
-                ]
-            },
-            {
-                "name": "Hybrid Energy Network",
-                "layout": [
-                    {
-                        "name": "Fuel Tank"
-                    },
-                    {
-                        "name": "Turboshaft",
-                        "brake_specific_fuel_consumption": 3.4e-5
-                    },
-                    {
-                        "name": "Gearbox"
-                    },
-                    {
-                        "name": "Generator"
-                    },
-                    {
-                        "name": "Battery"
-                    },
-                    {
-                        "name": "Electric Motor @ vertical"
-                    },
-                    {
-                        "name": "Rotor"
                     }
                 ]
             }

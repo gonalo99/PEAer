@@ -63,9 +63,12 @@ for i = 1 : length(mission.segments)
             fpl_design = fpl;
         end
     elseif strcmp(mission.segments{i}.type, 'cruise') % Cruise segment
-        [range_constraint, cruise_speed_constraint, forward_region, power] = cruise(plf_grid, wl_grid, wl, k, mission.segments{i}, vehicle, energy);
+        [range_constraint, stall_constraint,cruise_speed_constraint, forward_region, power] = cruise(plf_grid, wl_grid, wl, k, mission.segments{i}, vehicle, energy);
+        
+
         yyaxis left;
         plot([pl(1) pl(end)], [range_constraint range_constraint], 'DisplayName', strcat(mission.segments{i}.name, ": range constraint"));
+        plot([pl(1) pl(end)], [stall_constraint stall_constraint], 'DisplayName', strcat(mission.segments{i}.name, ": stall constraint"));
         plot(cruise_speed_constraint, wl, 'DisplayName', strcat(mission.segments{i}.name, ": cruise speed constraint"));
 
         fpl = vehicle.mass * constants.g / power;
@@ -147,6 +150,11 @@ yyaxis right;
 scatter(vpl_design, dl_design, 'filled', 'MarkerEdgeColor', '#D95319', 'MarkerFaceColor', '#D95319', 'DisplayName', 'Vertical Flight Design Point');
 
 % Helper functions
+function [constraint,region]=stallcurve(wl,segment,vehicle)
+wing=find_by_type(vehicle.components,'wing.main');
+constraint = stall_speed_constraint(segment.density, 0.7*segment.velocity,wing.airfoil.cl_max);
+region = stall_speed_region(wl,segment.density, 0.7*segment.velocity,wing.airfoil.cl_max);
+
 function [constraint, region, power] = hover(plv_grid, dl_grid, dl, segment, vehicle, energy)
 network = find_network_components(vehicle, find_by_name(energy.networks, segment.energy_network));
 engine = find_by_type(network, 'engine');
@@ -191,7 +199,7 @@ end
 
 power = network_max_power(network);
 
-function [range_constraint, cruise_speed_constraint, region, power] = cruise(plf_grid, wl_grid, wl, k, segment, vehicle, energy)
+function [range_constraint, stall_constraint, cruise_speed_constraint, region, power] = cruise(plf_grid, wl_grid, wl, k, segment, vehicle, energy)
 network = find_network_components(vehicle, find_by_name(energy.networks, segment.energy_network));
 engine = find_by_type(network, 'engine');
 [segment_props, ~] = find_by_name(vehicle.segments, segment.name);
@@ -211,7 +219,13 @@ elseif is_type(engine, 'engine.prop')
     cruise_speed_region = cruise_speed_region_prop(plf_grid, wl_grid, segment.density, segment.velocity, segment_props.base_drag_coefficient, k, prop.efficiency);
 end
 
-region = range_region .* cruise_speed_region;
+[stall_constraint stall_region]=stallcurve(wl_grid,segment,vehicle);
+if stall_constraint<range_constraint
+    limit_region=stall_region;
+else
+    limit_region=range_region;
+end
+region = limit_region .* cruise_speed_region;
 
 power = network_max_power(network);
 
@@ -362,7 +376,7 @@ c = wl < 0.5 * rho * v^2 * sqrt(cd_0 / k);
 function c = endurance_region_prop(wl, rho, v, cd_0, k)
 c = wl < 0.5 * rho * v^2 * sqrt(3 * cd_0 / k);
 
-function c = stall_speed_region(rho, v_s, c_lmax)
+function c = stall_speed_region(wl, rho, v_s, c_lmax)
 c = wl < 0.5 * rho * v_s^2 * c_lmax;
 
 function c = cruise_speed_region_jet(pl, wl, rho, v, cd_0, k)

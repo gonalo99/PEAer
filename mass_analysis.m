@@ -118,7 +118,7 @@ elseif is_type(source, 'energy.electric')
     %mf_batt = segment.range * constants.g / source.specific_energy / network_efficiency(network) / ld;
     %vehicle.components{network_ids(source_id)}.mass = source.mass + mf_batt * vehicle.mass;
     P = vehicle.mass*segment.velocity*cosd(segment.angle) + vehicle.segments{2,1}.base_drag_coefficient*0.5*segment.density(1)*vehicle.components{4,1}.area_wet*(segment.velocity*sind(segment.angle))^3;
-    E = P*(segment.altitude(2)-segment.altitude(1)/(segment.velocity*cosd(segment.angle)));
+    E = P/network_efficiency(network)*(segment.altitude(2)-segment.altitude(1)/(segment.velocity*cosd(segment.angle)));
     M_bat = E / source.specific_energy;
     vehicle.components{network_ids(source_id)}.mass = source.mass + M_bat;
     vehicle.mass = vehicle.mass - vehicle.components{network_ids(source_id)}.mass;
