@@ -8,8 +8,8 @@ constants.g = 9.81; % m/s^2
     [htail, ~] = find_by_type(vehicle.components, 'wing.htail');
     
     de_da = 0.2;
-    cl_a_w = wing.airfoil.lift_slope_coefficient * wing.aspect_ratio / (wing.aspect_ratio + 2);
-    cl_a_ht = htail.airfoil.lift_slope_coefficient * htail.aspect_ratio / (htail.aspect_ratio + 2);
+    cl_a_w = wing.airfoil.lift_slope_coefficient / (1 + wing.airfoil.lift_slope_coefficient/(pi * wing.oswald_efficiency * wing.aspect_ratio));
+    cl_a_ht = htail.airfoil.lift_slope_coefficient / (1 + htail.airfoil.lift_slope_coefficient/(pi * htail.oswald_efficiency * htail.aspect_ratio));
     
     Cm_alpha_wing = cl_a_w * wing.x_w / wing.mean_chord;
     Cm_alpha_tail = cl_a_ht * (1 - de_da) * htail.l_ht * (htail.aspect_ratio * htail.mean_chord / (wing.aspect_ratio * wing.mean_chord^2));

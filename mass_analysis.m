@@ -142,7 +142,6 @@ elseif is_type(source, 'energy.electric')
     altitude_range = segment.altitude(2) - segment.altitude(1);
     dl = vehicle.mass * constants.g / rotor_area(rotor);
     pl = 1 / (segment.velocity - rotor.induced_power_factor / 2 * segment.velocity + rotor.induced_power_factor / 2 * sqrt(segment.velocity^2 + 2 * dl / segment.density(1)) + segment.density(1) * rotor.tip_velocity^3 / dl * rotor.rotor_solidity * rotor.base_drag_coefficient / 8); % Power loading
-    disp(pl)
     mf_batt = altitude_range * constants.g / source.specific_energy / network_efficiency(network) / pl / segment.velocity; % Mass fraction for this segment
     vehicle.components{network_ids(source_id)}.mass = source.mass + mf_batt * vehicle.mass;
 end
