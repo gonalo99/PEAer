@@ -115,7 +115,7 @@
             {
                 "name": "D",
                 "type": "descent",
-                "energy_network": "Hybrid Energy Network",
+                "energy_network": "Electric Energy Network @ vertical",
                 "velocity": -30.0,
                 "altitude": [1250.0, 125.0],
                 "angle": -10.0
