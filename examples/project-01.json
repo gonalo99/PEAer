@@ -100,25 +100,25 @@
                 "name": "B",
                 "type": "climb",
                 "energy_network": "Electric Energy Network @ vertical",
-                "velocity": 30.0,
+                "velocity": 40.0,
                 "altitude": [125.0, 1250.0],
-                "angle": 10
+                "angle": 6
             },
             {
                 "name": "C",
                 "type": "cruise",
                 "energy_network": "Electric Energy Network @ cruise",
-                "velocity": 70.0,
-                "range": 250000,
+                "velocity": 80.0,
+                "range": 300000,
                 "altitude": 1250.0
             },
             {
                 "name": "D",
                 "type": "descent",
                 "energy_network": "Electric Energy Network @ vertical",
-                "velocity": -30.0,
+                "velocity": -40.0,
                 "altitude": [1250.0, 125.0],
-                "angle": -10.0
+                "angle": -6.0
             },
             {
                 "name": "N",
@@ -144,7 +144,7 @@
             {
                 "name": "Payload Bay",
                 "type": "mass.point",
-                "mass": 50
+                "mass": 100
             },
             {
                 "name": "Fuselage",
@@ -152,7 +152,7 @@
                 "interf_factor": 1.0,
                 "diameter": 1.7,
                 "length": 5 ,
-                "mass": 550
+                "mass": 575
             },
             {
                 "name": "Main Wing",
@@ -161,7 +161,7 @@
                 "aspect_ratio": 9,
                 "mean_chord": 1.0,
                 "oswald_efficiency": 0.85,
-                "x_w" : 1,
+                "x_w" : 0.7,
                 "z_w": -0.2,
                 "airfoil": {
                     "type": "naca6412",
@@ -179,10 +179,10 @@
                 "name": "Horizontal Tail",
                 "type": "wing.htail",
                 "interf_factor": 1.0,
-                "aspect_ratio": 7,
-                "mean_chord": 0.5,
+                "aspect_ratio": 5.1,
+                "mean_chord": 0.75,
                 "oswald_efficiency": 0.85,
-                "l_ht" : 3,
+                "l_ht" : 2.5,
                 "airfoil": {
                     "type": "naca6412",
                     "tc_max": 0.12,
@@ -193,14 +193,14 @@
                 "sweep_le": 0.0,
                 "sweep_c4": 0.0,
                 "sweep_tc_max": 0.0,
-                "mass": 50
+                "mass": 60
             },
             {
                 "name": "Vertical Tail",
                 "type": "wing.vtail",
                 "interf_factor": 1.0,
                 "aspect_ratio": 4.0,
-                "mean_chord": 0.8,
+                "mean_chord": 0.75,
                 "oswald_efficiency": 0.85,
                 "airfoil": {
                     "type": "naca0012",
@@ -212,7 +212,7 @@
                 "sweep_le": 0.0,
                 "sweep_c4": 0.0,
                 "sweep_tc_max": 0.0,
-                "mass": 30
+                "mass": 50
             },
             {
                 "name": "Battery",
@@ -226,36 +226,30 @@
                 "name": "Rotor",
                 "type": "driver.rotor.main",
                 "number": 4,
-                "number_blades": 5,
-                "radius": 1.3,
-                "rotor_solidity": 0.08,
+                "number_blades": 4,
+                "radius": 0.9,
+                "rotor_solidity": 0.1,
                 "induced_power_factor": 1.15,
                 "base_drag_coefficient": 0.02,
-                "tip_velocity": 240.1,
-                "efficiency": 0.6,
+                "tip_velocity": 234.8,
+                "efficiency": 0.76,
                 "mass": 20
-            },
-            {
-                "name": "Generator",
-                "type": "generator",
-                "efficiency": 0.96,
-                "mass": 5
             },
             {
                 "name": "Electric Motor @ vertical",
                 "type": "engine.prop",
                 "number": 4,
                 "efficiency": 0.95,
-                "mass": 60,
-                "max_power": 200000
+                "mass": 68,
+                "max_power": 260000
             },
             {
                 "name": "Electric Motor @ cruise",
                 "type": "engine.prop",
                 "number": 2,
                 "efficiency": 0.95,
-                "mass": 60,
-                "max_power": 200000
+                "mass": 68,
+                "max_power": 190000
             }
         ]
     },
