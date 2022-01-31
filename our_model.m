@@ -21,9 +21,6 @@ data.vehicle = aero_analysis(data.mission, data.vehicle);
 [data.mission, data.vehicle] = mass_analysis(data.mission, data.vehicle, data.energy);
 data.vehicle = design_space_analysis(data.mission, data.vehicle, data.energy);
 
-%% Stability analysis
-data.vehicle = stability(data.vehicle, data.mission);
-
 %%
 disp("MTOW = " + data.vehicle.mass);
 disp("Battery = " + data.vehicle.components{8}.mass);
