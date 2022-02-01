@@ -238,7 +238,7 @@
                 "induced_power_factor": 1.15,
                 "base_drag_coefficient": 0.01,
                 "tip_velocity": 285,
-                "efficiency": 0.74,
+                "efficiency": 0.83,
                 "mass": 20
             },
             {
