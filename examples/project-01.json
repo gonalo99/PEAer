@@ -233,7 +233,7 @@
                 "type": "driver.rotor.main",
                 "number": 4,
                 "number_blades": 4,
-                "radius": 1.1,
+                "radius": 1.15,
                 "rotor_solidity": 0.08,
                 "induced_power_factor": 1.15,
                 "base_drag_coefficient": 0.01,
